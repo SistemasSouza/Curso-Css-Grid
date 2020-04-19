@@ -1,0 +1,342 @@
+$colorPrimary: #8844ee;
+$colorSecundary: #b07dfb;
+$defaultBackground: #fafbfc;
+
+body,
+p,
+h1,
+ul,
+li,
+blockquote {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Vollkorn", Georgia, serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* GRID GERAL */
+.wrapper {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+    grid-template-areas:
+        "header header header"
+        "sidenav content announcement"
+        "footer footer footer";
+
+    /* Header */
+    .header {
+        grid-area: header;
+        background: linear-gradient(135deg, $colorPrimary, $colorSecundary);
+        padding: 30px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+
+        .logo {
+            max-width: 200px;
+        }
+
+        nav {
+            ul {
+                display: flex;
+            }
+
+            a {
+                display: block;
+                padding: 10px;
+                color: #fff;
+                font-size: 1.125em;
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                transition: 0.1s;
+
+                &:hover {
+                    background: rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+
+        li + li {
+            margin-left: 30px;
+        }
+    }
+
+    /* SIDENAV */
+    .sidenav {
+        grid-area: sidenav;
+        background: $defaultBackground;
+        padding: 30px;
+
+        li {
+            a {
+                display: block;
+                min-width: 60px;
+                max-width: 100px;
+                margin: 0 auto 30px auto;
+                background: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+                transition: 0.1s ease-out;
+
+                &:hover {
+                    background: $colorSecundary;
+                }
+            }
+        }
+    }
+
+    .content {
+        grid-area: content;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px;
+
+        .col-wide {
+            grid-column: 1 / -1;
+        }
+
+        .image-1 {
+            grid-row: span 2;
+            align-self: end;
+        }
+
+        .image-2 {
+            align-self: end;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            letter-spacing: -0.005em;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .title {
+            color: $colorSecundary;
+
+            h1 {
+                font-size: 3.75em;
+                line-height: 1;
+                font-weight: 700;
+            }
+
+            span {
+                font-size: 0.875em;
+                font-style: italic;
+            }
+        }
+
+        .characteristics {
+            display: flex;
+            align-items: flex-start;
+
+            span {
+                display: block;
+                border-radius: 0 0 5px 5px;
+                color: $colorSecundary;
+            }
+
+            > div {
+                width: 80px;
+                text-align: center;
+                background: linear-gradient(135deg, $colorPrimary, $colorSecundary);
+                border-radius: 5px;
+                box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+                position: relative;
+
+                &:nth-child(1) {
+                    margin-right: 30px;
+                }
+
+                .number {
+                    color: $colorSecundary;
+                    font-size: 3em;
+                    line-height: 1;
+                    margin: 10px auto;
+                }
+
+                .label {
+                    background: #fff;
+                    padding: 5px 0;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        }
+
+        .spotlight{
+            font-size: 0.875em;
+            color: $colorSecundary;
+            max-width: 16em;
+        }
+
+        .cite, .attributes{
+            align-self: start;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+            background: linear-gradient(135deg, $colorPrimary, $colorSecundary);
+        }
+
+        .cite{
+            p{
+                font-size: 1,5em;
+                font-size: italic;
+                text-align: center;
+                max-width: 500px;
+                margin: 0 auto;
+                color: #fff;
+            }
+        }
+
+        .attributes{
+            li{
+                color: #fff;
+                font-family: Courier, monospace;
+                font-size: 1.125em;
+                padding: 15px;
+
+                +li{
+                    border-top:2px solid $colorSecundary;    
+                }
+            }
+        }
+
+        .information {
+            p + p {
+                margin-top: 30px;
+            }
+        }
+    }
+
+    /*ANNOUNCEMENT*/
+    .announcement {
+        grid-area: announcement;
+        background: $defaultBackground;
+        display: grid;
+        align-content: start;
+        padding: 30px;
+        grid-gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    /*FOOTER*/
+    .footer {
+        grid-area: footer;
+        background: linear-gradient(135deg, $colorPrimary, $colorSecundary);
+
+        p {
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+        }
+    }
+}
+
+@media (max-width:1200px){
+   .wrapper{
+        grid-template-areas:
+        "header header header"
+        "sidenav content content"
+        "sidenav announcement announcement"
+        "footer footer footer";
+   }
+}
+
+@media (max-width:760px){
+    .wrapper{
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "header"
+        "sidenav"
+        "content"
+        "announcement"
+        "footer";
+
+        .header{
+            grid-template-columns: auto;
+
+            .logo{
+                margin-bottom: 20px;
+            }
+
+            nav {
+                a{
+                    font-size: 1em;
+                }
+            }
+
+            +li{
+                margin-left: 10px;
+            }
+        }
+
+        .sidenav{
+            position: relative;
+            padding: 0 30px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+
+            &::after{
+                content: '→';
+                position: absolute;
+                top: 5px;
+                right: 30px;
+                color: rgba(0,0,0, .3);
+                animation: arrow .5s ease-in 0s infinite alternate; 
+            }
+
+            ul{
+                display: flex;
+
+                li{
+                    flex: 1 0 60px;
+                    a{
+                        margin: 30px 30px 30px 0;
+                    }
+                };
+            }
+        }
+    }
+}
+
+@media (max-width:600px){
+    img{
+        width: 100%;
+    }
+    .wrapper{
+        .content{
+            grid-template-columns: auto;
+        }
+    }
+}
+
+@keyframes arrow{
+    from{
+        right: 30px;
+    }
+    to{
+        right: 20px;
+    }
+}
